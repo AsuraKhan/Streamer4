@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Node Chat</title>
+</head>
+<body>
+	<h1> Chat Super Cool</h1>
+
+	<form id="message-form">
+		<input type="text" name="pessoa" id="pessoa" placeholder="Id" >
+		<input type="text" name="user" placeholder="Seu nome">
+		<p> Wellcome to my chat </p>
+		<ol id="messages" style="color:white;background:black;list-style: none;overflow: auto;height: 200px;">
+		
+		</ol>
+		<input type="text" name="message" placeholder="Message" autocomplete="off" autofocus>
+		<button>Send</button>
+	</form>	
+	
+	<video id="video" width="700" height="400" controls>
+  		<source  src="video/movie.mp4" type="video/mp4">
+		Seu brownser é uma porcaria, troque por um melhor.
+	</video>
+	<br>
+	<button onclick="playVideo();">Play</button>
+	<button onclick="pauseVideo();">pause</button><br>
+	<div id="merda"></div>
+
+	<script src="/socket.io/socket.io.js"></script>
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+	<script src="js/index.js"></script>
+</body>
+</html>
