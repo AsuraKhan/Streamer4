@@ -3,6 +3,17 @@ var n = 0;
 var pageTitle = document.title;
 var video = document.getElementById("video");
 var user = document.getElementById("pessoa");
+var notification;
+
+	$(window).focus(function(){
+		notification = true;
+		console.log(notification);
+	});
+
+	$(window).blur(function(){
+		notification = false;
+		console.log(notification);
+	});
 
 video.ontimeupdate = function() {getTime()};
 
@@ -53,11 +64,6 @@ socket.on('disconnect', function() {
 });
 
 socket.on('newNotification', function(message){
-
-    if($(window).blur()){
-    	console.log("notificando fora agora");
-    	notifyMe(`${message.from}: ${message.text}`);
-    }
     		
 });
 
@@ -71,29 +77,10 @@ socket.on('newMessage', function(message) {
 	
     $('#messages').scrollTop( 99999 );
 
-	if (message){
-		document.title = "(" + n++ + ") " + pageTitle;
-		  
-	   	
-	}else{
-		document.title = pageTitle;
-	}
-    
-    $(window).focus(function(){
-    	var interval = setInterval(function(){ 
-    		document.title = pageTitle;
-    		n = 1;
-    	}, 100)
+    if (notification) {
+    	notifyMe(message.text);
+    }
 
-    	$(window).blur(function(){
-    		clearInterval(interval);
-    	});
-    });
-
-    $('.mensagem-unica:last-child').change(function(){
-    	alert("changed");
-    });
-    
 });
 
 

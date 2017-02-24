@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Playground</title>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			var idInterval;
+
+			$(window).blur(function(){
+				console.log("Saiu");
+				idInterval = setInterval(function(){console.log("saiu")},1000);
+
+			});
+			$(window).focus(function(){
+				console.log("Entrou");
+				clearInterval(idInterval);
+				//document.getElementsByClassName('checkWindow')[0].innerHTML = "0";
+			});
+		})
+	</script>
+</head>
+<body>
+	<div class="checkWindow">Yep</div>
+</body>
+</html>
