@@ -3,10 +3,12 @@ var n = 0;
 var pageTitle = document.title;
 var video = document.getElementById("video");
 var user = document.getElementById("pessoa");
-var notification;
+var notification = true;
 
 	$(window).focus(function(){
 		notification = true;
+		document.title = pageTitle;
+		n = 0;
 		console.log(notification);
 	});
 
@@ -79,6 +81,9 @@ socket.on('newMessage', function(message) {
 
     if (notification) {
     	notifyMe(message.text);
+    	
+    }else{
+    	document.title = "("+ ++n + ") " + pageTitle; 
     }
 
 });
