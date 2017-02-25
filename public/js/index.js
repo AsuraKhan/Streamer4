@@ -3,17 +3,17 @@ var n = 0;
 var pageTitle = document.title;
 var video = document.getElementById("video");
 var user = document.getElementById("pessoa");
-var notification = true;
+var notification;
 
 	$(window).focus(function(){
-		notification = true;
+		notification = false;
 		document.title = pageTitle;
 		n = 0;
 		console.log(notification);
 	});
 
 	$(window).blur(function(){
-		notification = false;
+		notification = true;
 		console.log(notification);
 	});
 
@@ -81,9 +81,11 @@ socket.on('newMessage', function(message) {
 
     if (notification) {
     	notifyMe(message.text);
-    	
-    }else{
     	document.title = "("+ ++n + ") " + pageTitle; 
+    }
+
+    if(!notification){
+    	
     }
 
 });
