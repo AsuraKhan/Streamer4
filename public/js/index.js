@@ -4,6 +4,12 @@ var pageTitle = document.title;
 var video = document.getElementById("video");
 var user = document.getElementById("pessoa");
 var notification;
+var li = $('<li class="mensagem-unica"></li>');
+
+$('#user').blur(function(){
+	var users = $('#user').val();
+	
+});
 
 	$(window).focus(function(){
 		notification = false;
@@ -61,19 +67,15 @@ socket.on('connect', function() {
 	// })
 });
 
-socket.on('disconnect', function() {
-	console.log("Disconnected from server");
-});
-
-socket.on('newNotification', function(message){
-    		
+socket.on('userDisconnect', function(disconnect){
+	li.append(`${disconnect.message}<br>`);
 });
 
 socket.on('newMessage', function(message) {
 	console.log("Message: ", message.from, message.text);
 
-	var li = $('<li class="mensagem-unica"></li>');
-	li.text(`${message.from}: ${message.text}`);
+	
+	li.append(`${message.from}: ${message.text}<br>`);
 
 	$('#messages').append(li);
 	

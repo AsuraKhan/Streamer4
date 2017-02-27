@@ -47,8 +47,10 @@ io.on('connection', (socket) => {
 
 	});
 
-	socket.on('disconnect', () => {
-			console.log("User disconnected");
+	socket.on('disconnect', (user) => {
+			io.emit('userDisconnect', {
+				message: "user disconnect from server"
+			});
 		});
 });
 
